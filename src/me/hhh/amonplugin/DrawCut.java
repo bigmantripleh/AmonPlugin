@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 public class DrawCut implements Listener
 {
   @EventHandler
-  public void onRightClick(PlayerInteractEvent e)
+  public void drawCut(PlayerInteractEvent e)
   {
     Player player = e.getPlayer();
     Action a = e.getAction();
@@ -24,5 +24,6 @@ public class DrawCut implements Listener
   {
     player.sendMessage("Na du nigger");
   }
+
   }
 }
