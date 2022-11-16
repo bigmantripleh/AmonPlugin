@@ -20,10 +20,10 @@ public class DrawCut implements Listener
     Player player = e.getPlayer();
     Action a = e.getAction();
 
-  if(a != Action.RIGHT_CLICK_AIR)
-  {
-    return;
-  }
+    if (a != Action.RIGHT_CLICK_AIR)
+    {
+      return;
+    }
 
     if (e.getItem().getType() == Material.BEDROCK)
     {
