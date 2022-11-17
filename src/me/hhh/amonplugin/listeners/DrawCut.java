@@ -2,6 +2,7 @@ package me.hhh.amonplugin.listeners;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.minecraft.server.v1_16_R3.CommandPlaySound;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -14,19 +15,16 @@ import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class DrawCut implements Listener {
     HashMap<String, Long> cooldowns = new HashMap<String, Long>();
 
     @EventHandler
     public void drawCut(PlayerInteractEvent e) {
+
         Player player = e.getPlayer();
         Action a = e.getAction();
-
-
-
-
-
 
         if (a != Action.RIGHT_CLICK_AIR) {
             return;
@@ -34,13 +32,15 @@ public class DrawCut implements Listener {
 
         int cooldownTime = 5;
 
-
-        if (e.getItem().getType() == Material.BEDROCK) {
+        //if (e.getItem().getType() == Material.BEDROCK) {
+        if(Objects.requireNonNull(e.getItem()).getType() == Material.NETHERITE_SWORD && Objects.requireNonNull(e.getItem().getItemMeta()).getCustomModelData() == 1000){
+/*
             if(!cooldowns.containsKey(player.getName()))
             {
                 cooldowns.put(player.getName(), System.currentTimeMillis());
                 return;
             }
+   */
             if(cooldowns.containsKey(player.getName()))
             {
                 long secondsLeft = ((cooldowns.get(player.getName())/1000)+cooldownTime) - (System.currentTimeMillis()/1000);
@@ -50,15 +50,21 @@ public class DrawCut implements Listener {
                     return;
                 }
                 cooldowns.put(player.getName(), System.currentTimeMillis());
+            }else{
+                cooldowns.put(player.getName(), System.currentTimeMillis());
+                return;
             }
+
+
+
             dashFwd(player);
             playDashSoundEffect(player);
 
-            List<Entity> nearby = player.getNearbyEntities(2, 0, 2);
+            List<Entity> nearby = player.getNearbyEntities(2.5, 0, 2.5);
             for (Entity entity : nearby) {
                 if (entity instanceof LivingEntity) {
                     LivingEntity le = (LivingEntity) entity;
-                    le.damage(10);
+                    le.damage(20);
                 }
             }
 
@@ -78,7 +84,7 @@ public class DrawCut implements Listener {
         Location test1 = location.add(yVector);
         Location test2 = test1.add(yVector);
 
-        World world = Bukkit.getServer().getWorld("world");
+        //World world = Bukkit.getServer().getWorld("world");
         if (test1.getBlock().isEmpty() && test2.getBlock().isEmpty()) {
             if (location.getBlock().isEmpty()) {
                 location.setY(location.getY() - 1);
@@ -97,10 +103,9 @@ public class DrawCut implements Listener {
     public void playDashSoundEffect(Player player) {
 
         World world = player.getWorld();
-        Location location = player.getLocation();/*
-        world.playEffect(location, world.playSound();, 0);
-        world.playSound();
-        */
+        Location location = player.getLocation();
+        world.playSound(location, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, (float) 0.7, (float) 0.7);
+
         player.sendMessage("                           .-\"--.__\n" +
                 "          _                / '+.--'\n" +
                 "           \\.-._          j / |\n" +
