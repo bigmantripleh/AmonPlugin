@@ -6,7 +6,8 @@
       <element id="extracted-dir" path="$USER_HOME$/Spigot 1.8.9 Server/spigot-1.16.5.jar" path-in-jar="/" />
       <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/Main.java" />
       <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/plugin.yml" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/DrawCut.java" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/DrawCut.java" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/Telettack.java" />
     </root>
   </artifact>
 </component>

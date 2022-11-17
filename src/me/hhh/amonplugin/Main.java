@@ -1,11 +1,10 @@
 package me.hhh.amonplugin;
 
-import org.bukkit.Bukkit;
+import me.hhh.amonplugin.listeners.DrawCut;
+import me.hhh.amonplugin.listeners.Telettack;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.HashMap;
 
 public class Main extends JavaPlugin
 {
@@ -15,6 +14,7 @@ public class Main extends JavaPlugin
   public void onEnable(){
     getLogger().info(ChatColor.GREEN+"AmonPlugin enabled!");
     getServer().getPluginManager().registerEvents(new DrawCut(), this);
+    getServer().getPluginManager().registerEvents(new Telettack(), this);
   }
 
   @Override
