@@ -1,5 +1,6 @@
 package me.hhh.amonplugin.listeners;
 
+import me.hhh.amonplugin.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,11 +19,22 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Telettack implements Listener {
 
+    private Main plugin;
+
     LivingEntity lockedTarget;
+
+    public Telettack(Main plugin)
+    {
+        this.plugin = plugin;
+    }
 
     @EventHandler
     public void telettack(PlayerInteractEvent e)
     {
+        if(plugin.telettack==false)
+        {
+            return;
+        }
         Player player = e.getPlayer();
         Action action = e.getAction();
 
