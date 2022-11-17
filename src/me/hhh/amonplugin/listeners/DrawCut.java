@@ -1,5 +1,6 @@
 package me.hhh.amonplugin.listeners;
 
+import me.hhh.amonplugin.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_16_R3.CommandPlaySound;
@@ -10,19 +11,32 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class DrawCut implements Listener {
     HashMap<String, Long> cooldowns = new HashMap<String, Long>();
 
+    private Main plugin;
+    public boolean droppable = true;
+    public DrawCut(Main plugin) {
+        this.plugin = plugin;
+    }
+
     @EventHandler
     public void drawCut(PlayerInteractEvent e) {
-
+        if(plugin.drawcut==false)
+        {
+            return;
+        }
         Player player = e.getPlayer();
         Action a = e.getAction();
 
@@ -32,15 +46,7 @@ public class DrawCut implements Listener {
 
         int cooldownTime = 5;
 
-        //if (e.getItem().getType() == Material.BEDROCK) {
-        if(Objects.requireNonNull(e.getItem()).getType() == Material.NETHERITE_SWORD && Objects.requireNonNull(e.getItem().getItemMeta()).getCustomModelData() == 1000){
-/*
-            if(!cooldowns.containsKey(player.getName()))
-            {
-                cooldowns.put(player.getName(), System.currentTimeMillis());
-                return;
-            }
-   */
+        if((e.getItem()).getType() == Material.STICK && e.getItem().getItemMeta().hasCustomModelData() &&(e.getItem().getItemMeta()).getCustomModelData() == 1001){
             if(cooldowns.containsKey(player.getName()))
             {
                 long secondsLeft = ((cooldowns.get(player.getName())/1000)+cooldownTime) - (System.currentTimeMillis()/1000);
@@ -55,6 +61,23 @@ public class DrawCut implements Listener {
                 return;
             }
 
+            ItemStack sword = new ItemStack(Material.NETHERITE_SWORD);
+            ItemStack sheath = new ItemStack((Material.STICK));
+            ItemStack sheathedSword = new ItemStack(Material.STICK);
+            ItemStack air = new ItemStack(Material.AIR);
+
+            ItemMeta sheathmeta = sheath.getItemMeta();
+            sheathmeta.setCustomModelData(1000);
+            ItemMeta swordmeta = sword.getItemMeta();
+            swordmeta.setCustomModelData(1000);
+            ItemMeta sheathedswordmeta = sheathedSword.getItemMeta();
+            sheathedswordmeta.setCustomModelData(1001);
+            sheath.setItemMeta(sheathmeta);
+            sword.setItemMeta(swordmeta);
+            sheathedSword.setItemMeta(sheathedswordmeta);
+
+            player.getInventory().setItemInOffHand(sheath);
+            player.getInventory().setItemInMainHand(sword);
 
 
             dashFwd(player);
@@ -67,7 +90,21 @@ public class DrawCut implements Listener {
                     le.damage(20);
                 }
             }
-
+            droppable=false;
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.instance, new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    player.getInventory().setItemInOffHand(air);
+                    player.getInventory().setItemInMainHand(sheathedSword);
+                    if(player.getInventory().contains(Material.NETHERITE_SWORD))
+                    {
+                        player.getInventory().remove(Material.NETHERITE_SWORD);
+                    }
+                    droppable=true;
+                }
+            }, cooldownTime*20);
         }
 
     }
@@ -104,42 +141,49 @@ public class DrawCut implements Listener {
 
         World world = player.getWorld();
         Location location = player.getLocation();
-        world.playSound(location, Sound.ENTITY_LIGHTNING_BOLT_IMPACT, (float) 0.7, (float) 0.7);
+        world.playSound(location, Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, (float) 0.7, (float) 0.7);
 
-        player.sendMessage("                           .-\"--.__\n" +
-                "          _                / '+.--'\n" +
-                "           \\.-._          j / |\n" +
-                "            \\`-.`._      . j  |\n" +
-                "             \\  `. `.    | |  L                        _,,--+='\n" +
-                "              L   `. `-. | |   \\                  _.-+'    /\n" +
-                "              |     \\   j  |    \\            _,-'\" .'    ,'\n" +
-                "              .      \\  |  |     \\         ,'   _,'    ,'\n" +
-                "               \\      `j   |      \\      .'   ,'      /\n" +
-                "                `.     |   |       \\   ,'   ,'       /\n" +
-                "                  \\    |   |        \\ /    /        /\n" +
-                "  _,-''\"\"\"\"'\"\"'\"\"`--. j    |         V    /      _,+............._\n" +
-                "-=`...-----...__     `|    |         .   /   _.-'        _,.--\"\",..=.\n" +
-                "      `-.       `._   |    |          L,'  ,'       _,.-'    ,-'\n" +
-                "         `.        `. |    |          |  .'     _.-'       ,'\n" +
-                "            .        \\|    '          L/    _,-'          /\n" +
-                "             `._      `.    L        /   _,'            ,'\n" +
-                "                `-._    \\   `       ,' ,'             ,'\n" +
-                "                    `-.. `   \\     /,-'           _.-'\n" +
-                "                      ,'\"-..  .   /_,..---\"`+'\"\"\"\"\n" +
-                "                     /           '           `.\n" +
-                "                    j                          .\n" +
-                "                   .                           |\n" +
-                "                   |   .-.       ,.            |\n" +
-                "                   |    -'       `.'           |\n" +
-                "                   `                           '\n" +
-                "                    `.      .--.             ,'\n" +
-                "                      `.    `._|          ,-'\n" +
-                "                    _.-`   ,..______.. .  `-.\n" +
-                "                  ,'       |          |      `.\n" +
-                "                ,'         '          |        `.\n" +
-                "               /         ,'            .         .\n" +
-                "               \\     _,-'               `._      |\n" +
-                "                `---'                      `-....'");
     }
 
+    @EventHandler
+    public void PreventNetheriteDrop(PlayerDropItemEvent event)
+    {
+        if(droppable==false)
+        {
+            if(event.getItemDrop().getItemStack().getType()==Material.NETHERITE_SWORD)
+            {
+                event.setCancelled(true);
+            }
+        }
+        else
+            return;
+    }
+
+    @EventHandler
+    public void PreventNetheriteMove(InventoryClickEvent event)
+    {
+        if(droppable==false)
+        {
+            if(event.getCurrentItem().getType()==Material.NETHERITE_SWORD)
+            {
+                event.setCancelled(true);
+            }
+        }
+        else
+            return;
+    }
+
+    @EventHandler
+    public void PreventNetheriteDrag(InventoryDragEvent dragEvent)
+    {
+        if(droppable==false)
+        {
+            if(dragEvent.getCursor().getType()==Material.NETHERITE_SWORD)
+            {
+                dragEvent.setCancelled(true);
+            }
+        }
+        else
+            return;
+    }
 }

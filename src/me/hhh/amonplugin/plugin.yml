@@ -7,4 +7,14 @@ commands:
   toggletelettack:
     description: Toggles Telettack
     usage: /toggletelettack
-    permission: amon.telettack
+    permission: amon.telettack.toggle
+
+  toggledrawcut:
+    description: Toggles DrawCut
+    usage: /toggledrawcut
+    permission: amon.drawcut.toggle
+
+  setmodel:
+    description: Sets custom model data
+    usage: /setmodel
+    permission: amon.setmodel

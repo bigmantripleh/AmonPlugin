@@ -3,3 +3,18 @@ version: 1.1 # the plugin's version
 author: BigManTripleH
 main: me.hhh.amonplugin.Main
 api-version: 1.16 # the version of the API you want to use, required starting with 1.13
+commands:
+  toggletelettack:
+    description: Toggles Telettack
+    usage: /toggletelettack
+    permission: amon.telettack.toggle
+
+  toggledrawcut:
+    description: Toggles DrawCut
+    usage: /toggledrawcut
+    permission: amon.drawcut.toggle
+
+  setmodel:
+    description: Sets custom model data
+    usage: /setmodel
+    permission: amon.setmodel
