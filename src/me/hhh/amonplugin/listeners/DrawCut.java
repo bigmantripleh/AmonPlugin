@@ -19,8 +19,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class DrawCut implements Listener {
     HashMap<String, Long> cooldowns = new HashMap<String, Long>();
@@ -111,6 +113,7 @@ public class DrawCut implements Listener {
 
     public void dashFwd(Player player) {
         Location location = player.getLocation();
+        Location startLocation = location;
         Vector direction = location.getDirection();
         direction.normalize();
         direction.multiply(5);
@@ -135,6 +138,7 @@ public class DrawCut implements Listener {
                 player.teleport(test1);
             }
         }
+
     }
 
     public void playDashSoundEffect(Player player) {
@@ -186,4 +190,5 @@ public class DrawCut implements Listener {
         else
             return;
     }
+
 }

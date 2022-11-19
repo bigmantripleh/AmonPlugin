@@ -18,3 +18,8 @@ commands:
     description: Sets custom model data
     usage: /setmodel
     permission: amon.setmodel
+
+  entphere:
+    description: TPs selected entity to you
+    usage: /entphere
+    permission: amon.entphere

@@ -67,16 +67,15 @@ public class Telettack implements Listener {
 
         int i = ThreadLocalRandom.current().nextInt(1, 8+1);
         switch(i){
-            case 1: x = targetLoc.getX()+range; z = targetLoc.getZ()+range; player.sendMessage("1"); break;
-            case 2: x = targetLoc.getX()+range; z = targetLoc.getZ()-range; player.sendMessage("2"); break;
-            case 3: x = targetLoc.getX()-range; z = targetLoc.getZ()+range; player.sendMessage("3"); break;
-            case 4: x = targetLoc.getX()-range; z = targetLoc.getZ()-range; player.sendMessage("4"); break;
+            case 1: x = targetLoc.getX()+range; z = targetLoc.getZ()+range;  break;
+            case 2: x = targetLoc.getX()+range; z = targetLoc.getZ()-range;  break;
+            case 3: x = targetLoc.getX()-range; z = targetLoc.getZ()+range;  break;
+            case 4: x = targetLoc.getX()-range; z = targetLoc.getZ()-range;  break;
             case 5: x = targetLoc.getX()+range; z = targetLoc.getZ(); break;
             case 6: x = targetLoc.getX()-range; z = targetLoc.getZ(); break;
             case 7: x = targetLoc.getX(); z = targetLoc.getZ()+range; break;
             case 8: x = targetLoc.getX(); z = targetLoc.getZ()-range; break;
         }
-
         Location telLocation = new Location(Bukkit.getServer().getWorld("world"), x, targetLoc.getY(), z);
         float yaw = (float) Math.toDegrees(Math.atan2(telLocation.getZ() - targetLoc.getZ(), telLocation.getX() - targetLoc.getX())) - 90;
         telLocation.setYaw(yaw+180);
@@ -84,8 +83,6 @@ public class Telettack implements Listener {
         PotionEffect blind = new PotionEffect(PotionEffectType.BLINDNESS, 40, 3);
         blind.apply(lockedTarget);
         player.teleport(telLocation);
-
-
     }
 
     @EventHandler
@@ -100,7 +97,6 @@ public class Telettack implements Listener {
         {
             return;
         }
-        e.getDamager().sendMessage(e.getEntityType().toString());
         if(!(e.getEntity() instanceof LivingEntity))
         {
             return;
