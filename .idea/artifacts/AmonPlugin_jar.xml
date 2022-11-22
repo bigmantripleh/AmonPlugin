@@ -12,6 +12,8 @@
       <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/commands/SetCustomModelData.java" />
       <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/BuryTheLight.java" />
       <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/commands/TPSelectedEntity.java" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/DayTicket.java" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/NightTicket.java" />
     </root>
   </artifact>
 </component>

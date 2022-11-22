@@ -4,9 +4,7 @@ import me.hhh.amonplugin.commands.SetCustomModelData;
 import me.hhh.amonplugin.commands.TPSelectedEntity;
 import me.hhh.amonplugin.commands.ToggleDrawCut;
 import me.hhh.amonplugin.commands.ToggleTP;
-import me.hhh.amonplugin.listeners.BuryTheLight;
-import me.hhh.amonplugin.listeners.DrawCut;
-import me.hhh.amonplugin.listeners.Telettack;
+import me.hhh.amonplugin.listeners.*;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.Plugin;
@@ -31,6 +29,8 @@ public class Main extends JavaPlugin
     getServer().getPluginManager().registerEvents(new Telettack(this), this);
     getServer().getPluginManager().registerEvents(new BuryTheLight(this), this);
     getServer().getPluginManager().registerEvents(new TPSelectedEntity(this), this);
+    getServer().getPluginManager().registerEvents(new DayTicket(), this);
+    getServer().getPluginManager().registerEvents(new NightTicket(), this);
   }
 
   @Override

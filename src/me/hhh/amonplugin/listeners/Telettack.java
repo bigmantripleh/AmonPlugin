@@ -82,7 +82,18 @@ public class Telettack implements Listener {
         player.sendMessage("Added effect to "+lockedTarget.getName());
         PotionEffect blind = new PotionEffect(PotionEffectType.BLINDNESS, 40, 3);
         blind.apply(lockedTarget);
+        Player target=null;
+        if(lockedTarget instanceof Player)
+        {
+            target = (Player) lockedTarget;
+            target.hidePlayer(plugin, player);
+        }
         player.teleport(telLocation);
+        if(target==null)
+        {
+            return;
+        }
+        target.showPlayer(plugin, player);
     }
 
     @EventHandler
