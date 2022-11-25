@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -82,6 +83,7 @@ public class Telettack implements Listener {
         player.sendMessage("Added effect to "+lockedTarget.getName());
         PotionEffect blind = new PotionEffect(PotionEffectType.BLINDNESS, 40, 3);
         blind.apply(lockedTarget);
+
         Player target=null;
         if(lockedTarget instanceof Player)
         {
@@ -89,11 +91,16 @@ public class Telettack implements Listener {
             target.hidePlayer(plugin, player);
         }
         player.teleport(telLocation);
+
+        Vector direction = lockedTarget.getLocation().toVector().subtract(player.getLocation().toVector()).normalize();
+        direction.multiply(0.5);
+        player.setVelocity(direction);
         if(target==null)
         {
             return;
         }
         target.showPlayer(plugin, player);
+
     }
 
     @EventHandler

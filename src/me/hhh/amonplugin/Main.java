@@ -17,6 +17,8 @@ public class Main extends JavaPlugin
   public boolean telettack = true;
   public boolean drawcut = true;
 
+  public boolean bloodmoon = false;
+
   @Override
   public void onEnable(){
     getLogger().info(ChatColor.GREEN+"AmonPlugin enabled!");
@@ -29,8 +31,12 @@ public class Main extends JavaPlugin
     getServer().getPluginManager().registerEvents(new Telettack(this), this);
     getServer().getPluginManager().registerEvents(new BuryTheLight(this), this);
     getServer().getPluginManager().registerEvents(new TPSelectedEntity(this), this);
-    getServer().getPluginManager().registerEvents(new DayTicket(), this);
+    getServer().getPluginManager().registerEvents(new DayTicket(this), this);
     getServer().getPluginManager().registerEvents(new NightTicket(), this);
+    getServer().getPluginManager().registerEvents(new BuryTheTeleport(this), this);
+    //getServer().getPluginManager().registerEvents(new SecretBarrier(), this);
+    getServer().getPluginManager().registerEvents(new MagnetPunch(), this);
+    getServer().getPluginManager().registerEvents(new DeflectTest(), this);
   }
 
   @Override

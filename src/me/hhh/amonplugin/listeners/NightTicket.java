@@ -3,6 +3,7 @@ package me.hhh.amonplugin.listeners;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -16,6 +17,8 @@ public class NightTicket implements Listener {
     @EventHandler
     public void DayTicket(PlayerInteractEvent event)
     {
+        String command = "/list";
+        ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
         Player player = event.getPlayer();
         Action action = event.getAction();
 
