@@ -42,8 +42,23 @@ public class DeflectTest implements Listener {
             senderlocation.setY(senderlocation.getY()+2);
             Vector vector = sender.getLocation().toVector().subtract(spawnlocation.toVector()).normalize();
             Arrow arrow = Bukkit.getWorld("world").spawnArrow(spawnlocation, vector, 2, 0);
+            event.setCancelled(true);
         }
-        event.setCancelled(true);
+        if(projectile.getType() == EntityType.SPLASH_POTION) {
+            ThrownPotion potion = (ThrownPotion) projectile;
+            projectile.remove();
+            Location spawnlocation = player.getEyeLocation();
+            spawnlocation.setY(spawnlocation.getY()+1);
+            LivingEntity sender = (LivingEntity) projectile.getShooter();
+            if(sender==null)
+            {
+                return;
+            }
+            Vector vector = sender.getLocation().toVector().subtract(spawnlocation.toVector()).normalize();
+            ThrownPotion returnpotion = (ThrownPotion) Bukkit.getWorld("world").spawnEntity(spawnlocation, potion.getType());
+            returnpotion.setVelocity(vector);
+            event.setCancelled(true);
+        }
     }
-
+    
 }

@@ -77,7 +77,7 @@ public class Telettack implements Listener {
             case 7: x = targetLoc.getX(); z = targetLoc.getZ()+range; break;
             case 8: x = targetLoc.getX(); z = targetLoc.getZ()-range; break;
         }
-        Location telLocation = new Location(Bukkit.getServer().getWorld("world"), x, targetLoc.getY(), z);
+        Location telLocation = new Location(player.getWorld(), x, targetLoc.getY(), z);
         float yaw = (float) Math.toDegrees(Math.atan2(telLocation.getZ() - targetLoc.getZ(), telLocation.getX() - targetLoc.getX())) - 90;
         telLocation.setYaw(yaw+180);
         player.sendMessage("Added effect to "+lockedTarget.getName());

@@ -3,6 +3,7 @@ package me.hhh.amonplugin.listeners;
 import me.hhh.amonplugin.Main;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -35,7 +36,7 @@ public class MagnetPunch implements Listener {
             return;
         }
 
-        if(event.getItem().getType() != Material.IRON_SWORD && !(event.getItem().getItemMeta().getDisplayName().equals("Magnet-Sword")))
+        if(event.getItem().getType() != Material.IRON_SWORD || !(event.getItem().getItemMeta().getDisplayName().equals("Magnet-Sword")))
         {
             return;
         }
@@ -47,7 +48,9 @@ public class MagnetPunch implements Listener {
         {
             if(entity instanceof LivingEntity)
             {
-                targets.add((LivingEntity) entity);
+                if(!(entity instanceof Chicken)){
+                    targets.add((LivingEntity) entity);
+                }
             }
         }
 
