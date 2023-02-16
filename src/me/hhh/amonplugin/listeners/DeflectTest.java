@@ -14,6 +14,10 @@ public class DeflectTest implements Listener {
     @EventHandler
     public void deflectArrow(ProjectileHitEvent event)
     {
+        if(!(event.getHitEntity() instanceof LivingEntity))
+        {
+            return;
+        }
         LivingEntity hit = (LivingEntity) event.getHitEntity();
         if(!(hit instanceof Player)) {
            return;
