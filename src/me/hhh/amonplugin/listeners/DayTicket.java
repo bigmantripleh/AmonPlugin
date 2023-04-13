@@ -73,7 +73,7 @@ public class DayTicket implements Listener {
         String message = event.getMessage();
         if(message.contains("The sky is darker than usual"))
         {
-            Bukkit.broadcastMessage("Heil Hitler");
+            Bukkit.broadcastMessage("test");
             plugin.bloodmoon = true;
         }
         else if(message.contains("&a&lThe BloodMoon fades away... for now"))

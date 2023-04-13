@@ -37,6 +37,7 @@ public class Main extends JavaPlugin
     //getServer().getPluginManager().registerEvents(new SecretBarrier(), this);
     getServer().getPluginManager().registerEvents(new MagnetPunch(), this);
     getServer().getPluginManager().registerEvents(new DeflectTest(), this);
+    getServer().getPluginManager().registerEvents(new DeathXPloss(), this);
   }
 
   @Override

@@ -9,6 +9,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.util.Vector;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class DeflectTest implements Listener {
 
     @EventHandler
@@ -62,6 +64,22 @@ public class DeflectTest implements Listener {
             ThrownPotion returnpotion = (ThrownPotion) Bukkit.getWorld("world").spawnEntity(spawnlocation, potion.getType());
             returnpotion.setVelocity(vector);
             event.setCancelled(true);
+        }
+        if(projectile.getType() == EntityType.SNOWBALL)
+        {
+
+            int i = ThreadLocalRandom.current().nextInt(1, 3);
+            projectile.remove();
+
+            player.sendMessage("Oddish odd");
+            if(i==1)
+            {
+                projectile.remove();
+            }
+            else{
+                return;
+            }
+
         }
     }
     
