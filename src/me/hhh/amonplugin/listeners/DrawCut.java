@@ -3,7 +3,6 @@ package me.hhh.amonplugin.listeners;
 import me.hhh.amonplugin.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import net.minecraft.server.v1_16_R3.CommandPlaySound;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -58,6 +57,7 @@ public class DrawCut implements Listener {
                     return;
                 }
                 cooldowns.put(player.getName(), System.currentTimeMillis());
+
             }else{
                 cooldowns.put(player.getName(), System.currentTimeMillis());
                 return;
