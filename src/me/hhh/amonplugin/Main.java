@@ -27,13 +27,17 @@ public class Main extends JavaPlugin
     getCommand("toggledrawcut").setExecutor(new ToggleDrawCut(this));
     getCommand("setmodel").setExecutor(new SetCustomModelData());
     getCommand("entphere").setExecutor(new TPSelectedEntity(this));
+    getServer().getPluginManager().registerEvents(new CircleBlast(this), this);
+    getServer().getPluginManager().registerEvents(new CatSummoner(this), this);
     getServer().getPluginManager().registerEvents(new DrawCut(this), this);
     getServer().getPluginManager().registerEvents(new Telettack(this), this);
     getServer().getPluginManager().registerEvents(new BuryTheLight(this), this);
     getServer().getPluginManager().registerEvents(new TPSelectedEntity(this), this);
     getServer().getPluginManager().registerEvents(new DayTicket(this), this);
     getServer().getPluginManager().registerEvents(new NightTicket(), this);
-    getServer().getPluginManager().registerEvents(new BuryTheTeleport(this), this);
+    getServer().getPluginManager().registerEvents(new ArrowStrike(this), this);
+    getServer().getPluginManager().registerEvents(new ArrowStrikePlus(this), this);
+    //getServer().getPluginManager().registerEvents(new BuryTheTeleport(this), this);
     //getServer().getPluginManager().registerEvents(new SecretBarrier(), this);
     getServer().getPluginManager().registerEvents(new MagnetPunch(), this);
     getServer().getPluginManager().registerEvents(new DeflectTest(), this);
