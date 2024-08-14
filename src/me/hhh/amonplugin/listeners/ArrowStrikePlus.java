@@ -50,29 +50,27 @@ public class ArrowStrikePlus implements Listener {
 
             // Create the first pillar with the particle circle
             createParticleCircle(hitLocation, 2, () -> {
-                createPillar(hitLocation, 1, shooterId, () -> {
+                createPillar(hitLocation, shooterId, () -> {
                     // Create two additional pillars after the first pillar disappears
-                    createParticleCircle(hitLocation, 2, () -> {
-                        createAdditionalPillars(hitLocation, 2, shooterId, () -> {
-                            // Create three more random pillars after the second set disappears
-                            for (int i = 0; i < 3; i++) {
-                                Location randomLocation = hitLocation.clone().add(
-                                        (random.nextDouble() - 0.5) * 10,
-                                        0,
-                                        (random.nextDouble() - 0.5) * 10
-                                );
-                                createParticleCircle(randomLocation, 2, () -> {
-                                    createPillar(randomLocation, 0, shooterId, null); // Final set of pillars without further pillars
-                                });
-                            }
-                        });
+                    createAdditionalPillars(hitLocation, 2, shooterId, () -> {
+                        // Create three more random pillars after the second set disappears
+                        for (int i = 0; i < 3; i++) {
+                            Location randomLocation = hitLocation.clone().add(
+                                    (random.nextDouble() - 0.5) * 10,
+                                    0,
+                                    (random.nextDouble() - 0.5) * 10
+                            );
+                            createParticleCircle(randomLocation, 2, () -> {
+                                createPillar(randomLocation, shooterId, null); // Final set of pillars without further pillars
+                            });
+                        }
                     });
                 });
             });
         }
     }
 
-    private void createPillar(Location center, int additionalPillars, UUID shooterId, Runnable afterPillars) {
+    private void createPillar(Location center, UUID shooterId, Runnable afterPillars) {
         // Display the vertical pillar with increased height
         for (double y = 0; y <= 20; y += 0.5) { // Create pillar up to 20 blocks high
             Location particleLocation = center.clone().add(0, y, 0);
@@ -122,10 +120,7 @@ public class ArrowStrikePlus implements Listener {
             @Override
             public void run() {
                 // Remove particles by simply not spawning new ones
-                if (additionalPillars > 0) {
-                    // Create more pillars if needed
-                    createPillar(center, additionalPillars - 1, shooterId, afterPillars);
-                } else if (afterPillars != null) {
+                if (afterPillars != null) {
                     afterPillars.run();
                 }
             }
@@ -133,15 +128,19 @@ public class ArrowStrikePlus implements Listener {
     }
 
     private void createAdditionalPillars(Location center, int numPillars, UUID shooterId, Runnable afterPillars) {
-        // Create additional pillars at the same time
+        // Create additional pillars with angle-based placement to avoid overlap
+        double angleBetweenPillars = 360.0 / numPillars; // Calculate angle to space out pillars evenly
+        double radius = 5; // Set a fixed radius for pillar placement
+
         for (int i = 0; i < numPillars; i++) {
-            Location offsetLocation = center.clone().add(
-                    (random.nextDouble() - 0.5) * 5,
-                    0,
-                    (random.nextDouble() - 0.5) * 5
-            );
+            double angle = i * angleBetweenPillars;
+            double radians = Math.toRadians(angle);
+            double xOffset = radius * Math.cos(radians);
+            double zOffset = radius * Math.sin(radians);
+
+            Location offsetLocation = center.clone().add(xOffset, 0, zOffset);
             createParticleCircle(offsetLocation, 2, () -> {
-                createPillar(offsetLocation, 0, shooterId, null); // No additional pillars after this
+                createPillar(offsetLocation, shooterId, null); // No additional pillars after this
             });
         }
 
