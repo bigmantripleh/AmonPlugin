@@ -1,9 +1,6 @@
 package me.hhh.amonplugin;
 
-import me.hhh.amonplugin.commands.SetCustomModelData;
-import me.hhh.amonplugin.commands.TPSelectedEntity;
-import me.hhh.amonplugin.commands.ToggleDrawCut;
-import me.hhh.amonplugin.commands.ToggleTP;
+import me.hhh.amonplugin.commands.*;
 import me.hhh.amonplugin.listeners.*;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
@@ -24,12 +21,13 @@ public class Main extends JavaPlugin
     getLogger().info(ChatColor.GREEN+"AmonPlugin enabled!");
     instance = this;
     getCommand("toggletelettack").setExecutor(new ToggleTP(this));
+    getCommand("showhbar").setExecutor(new ShowBossBar(this));
     getCommand("toggledrawcut").setExecutor(new ToggleDrawCut(this));
     getCommand("setmodel").setExecutor(new SetCustomModelData());
     getCommand("entphere").setExecutor(new TPSelectedEntity(this));
     getServer().getPluginManager().registerEvents(new ArmorBreak(this), this);
     getServer().getPluginManager().registerEvents(new BlockThrow(this), this);
-    this.getServer().getPluginManager().registerEvents(new SwordSlash(this), this);
+    getServer().getPluginManager().registerEvents(new SwordSlash(this), this);
     getServer().getPluginManager().registerEvents(new SpikeAttackMass(this), this);
     getServer().getPluginManager().registerEvents(new CatScratch(this), this);
     getServer().getPluginManager().registerEvents(new SpecialJumpAttack(this), this);
@@ -45,13 +43,19 @@ public class Main extends JavaPlugin
     getServer().getPluginManager().registerEvents(new TeleBow(this), this);
     getServer().getPluginManager().registerEvents(new ChainAttack(this), this);
     getServer().getPluginManager().registerEvents(new NightTicket(), this);
+    getServer().getPluginManager().registerEvents(new BlackSun(this), this);
     getServer().getPluginManager().registerEvents(new ArrowStrike(this), this);
     getServer().getPluginManager().registerEvents(new ArrowStrikePlus(this), this);
     //getServer().getPluginManager().registerEvents(new BuryTheTeleport(this), this);
     //getServer().getPluginManager().registerEvents(new SecretBarrier(), this);
+    getServer().getPluginManager().registerEvents(new BeamOfDeath(this), this);
+    getServer().getPluginManager().registerEvents(new DevastatingBlow(this), this);
     getServer().getPluginManager().registerEvents(new MagnetPunch(), this);
     getServer().getPluginManager().registerEvents(new DeflectTest(), this);
     getServer().getPluginManager().registerEvents(new DeathXPloss(), this);
+    getServer().getPluginManager().registerEvents(new DevastatingBlow(this), this);
+    getServer().getPluginManager().registerEvents(new UltraInstinct(this), this);
+    this.getServer().getPluginManager().registerEvents(new SwordierSlash(this), this);
   }
 
   @Override

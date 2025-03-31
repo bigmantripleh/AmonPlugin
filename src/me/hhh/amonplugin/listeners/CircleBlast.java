@@ -127,6 +127,7 @@ public class CircleBlast implements Listener {
                     Vector knockback = livingEntity.getLocation().toVector().subtract(player.getLocation().toVector()).normalize().multiply(3);
                     livingEntity.setVelocity(knockback);
 
+                    livingEntity.damage(radius*1.7);
                     // Apply nausea effect
                     livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 140, 1)); // 140 ticks = 7 seconds
                 }

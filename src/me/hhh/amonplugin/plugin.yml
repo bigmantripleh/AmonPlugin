@@ -23,3 +23,8 @@ commands:
     description: TPs selected entity to you
     usage: /entphere
     permission: amon.entphere
+
+  showhbar:
+    description: Shows health bar
+    usage: /showhbar
+    permission: amon.showhbar
