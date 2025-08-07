@@ -1,12 +1,12 @@
-package me.hhh.amonplugin.listeners;
+package me.hhh.amonplugin.listeners.EventAbilities;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Cat;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -46,7 +46,7 @@ public class CatSummoner implements Listener {
         if (item.getType() == Material.WOODEN_SWORD && item.getEnchantmentLevel(Enchantment.MENDING) == 10) {
             // Check cooldown
             if (isOnCooldown(player)) {
-                player.sendMessage("§cThe ability is on cooldown! Please wait a bit longer.");
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§6§lCAT SUMMONER IS ON COOLDOWN"));
                 return;
             }
 
@@ -154,6 +154,7 @@ public class CatSummoner implements Listener {
 
         activeCats.remove(playerId);
         player.sendMessage("§aYour summoned cats have returned to the wild.");
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§6§lCATS HAVE RETURNED TO THE WILD"));
     }
 
     private void attackTarget(LivingEntity attacker, LivingEntity target) {

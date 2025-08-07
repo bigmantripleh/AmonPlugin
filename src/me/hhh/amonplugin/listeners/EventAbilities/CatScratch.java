@@ -1,5 +1,7 @@
-package me.hhh.amonplugin.listeners; // Change this to your actual package name
+package me.hhh.amonplugin.listeners.EventAbilities; // Change this to your actual package name
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
@@ -42,7 +44,7 @@ public class CatScratch implements Listener {
             // Check if the item is shears and has Mending 10
             if (item.getType() == Material.SHEARS && item.containsEnchantment(org.bukkit.enchantments.Enchantment.MENDING)) {
                 if (cooldownPlayers.contains(player)) {
-                    player.sendMessage("Please wait until you can use Scratch Fury again");
+                    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§6§lSCRATCH FURY IS ON COOLDOWN"));
                     return;
                 }
 
@@ -57,7 +59,7 @@ public class CatScratch implements Listener {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        player.sendMessage("Your Scratch Fury has ended. Time for a snack!");
+                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§6§lSCRATCH FURY HAS ENDED, TIME FOR A SNACK"));
                         player.playSound(player.getLocation(), "entity.cat.ambient", 1.0f, 1.0f);
                         healPlayerForItems(player);
                         healPlayerForItems(player);
@@ -69,7 +71,7 @@ public class CatScratch implements Listener {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        player.sendMessage("You can now use Scratch Fury again");
+                        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§6§lYOU CAN USE SCRATCH FURY AGAIN"));
                         cooldownPlayers.remove(player);
                     }
                 }.runTaskLater(plugin, COOLDOWN_DURATION);
