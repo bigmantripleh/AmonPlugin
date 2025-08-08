@@ -1,6 +1,6 @@
 package me.hhh.amonplugin.listeners.EventAbilities;
 
-import me.hhh.amonplugin.listeners.PluginHelper;
+import me.hhh.amonplugin.Helpers.PluginHelper;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
@@ -42,8 +42,8 @@ public class BetterBlockThrow implements Listener {
         }
         ItemStack item = player.getInventory().getItemInMainHand();
         if (item.getType() == Material.NETHERITE_SHOVEL
-                //&& meta.hasEnchant(Enchantment.MENDING)
-                //&& item.getEnchantmentLevel(Enchantment.MENDING) == 10
+//                && meta.hasEnchant(Enchantment.MENDING)
+//                && item.getEnchantmentLevel(Enchantment.MENDING) == 10
         ) {
             if (isOnCooldown(player)) {
                 player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§n§lBLOCK THROW IS ON COOLDOWN"));

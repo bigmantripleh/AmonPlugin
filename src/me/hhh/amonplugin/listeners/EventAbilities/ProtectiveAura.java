@@ -1,6 +1,6 @@
 package me.hhh.amonplugin.listeners.EventAbilities;
 
-import me.hhh.amonplugin.listeners.PluginHelper;
+import me.hhh.amonplugin.Helpers.PluginHelper;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;

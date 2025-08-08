@@ -2,7 +2,6 @@ package me.hhh.amonplugin;
 
 import me.hhh.amonplugin.commands.*;
 import me.hhh.amonplugin.listeners.*;
-import me.hhh.amonplugin.listeners.BeamOfDeath;
 import me.hhh.amonplugin.listeners.EventAbilities.*;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
@@ -28,6 +27,7 @@ public class Main extends JavaPlugin {
         getCommand("showhbar").setExecutor(new ShowBossBar(this));
         getCommand("entphere").setExecutor(new TPSelectedEntity(this));
         PluginManager pm = getServer().getPluginManager();
+        pm.registerEvents(new HealthBarListener(this), this);
         pm.registerEvents(new ArmorBreak(this), this);
         pm.registerEvents(new BlockThrow(this), this);
         pm.registerEvents(new SwordSlash(this), this);

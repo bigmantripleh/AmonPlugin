@@ -1,22 +1,16 @@
 package me.hhh.amonplugin.listeners.EventAbilities;
 
-import me.hhh.amonplugin.listeners.PluginHelper;
-import net.md_5.bungee.api.ChatColor;
+import me.hhh.amonplugin.CustomMobs.FoxCourierMob;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Fox;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,13 +55,9 @@ public class FoxCourier implements Listener {
         }
     }
 
-    public void triggerAttack(Player player){
-        Location loc = player.getLocation();
-        Fox fox = loc.getWorld().spawn(loc, Fox.class);
-        fox.setFirstTrustedPlayer(player);
-        fox.setSecondTrustedPlayer(player);
-        fox.setFoxType(Fox.Type.RED);
-        fox.setAdult();
-        fox.getEquipment().setItemInMainHand(new ItemStack(Material.DIAMOND_SWORD));
+    public void triggerAttack(Player player) {
+        Location loc = new Location(player.getWorld(), player.getLocation().getX() + 25, player.getLocation().getY(), player.getLocation().getZ());
+        FoxCourierMob fox = new FoxCourierMob(loc, player);
+
     }
 }
