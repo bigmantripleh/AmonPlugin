@@ -6,6 +6,6 @@
     </list>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="openjdk-17" project-jdk-type="JavaSDK">
-    <output url="file://$USER_HOME$/Server/plugins" />
+    <output url="file://$USER_HOME$/Spigot 1.8.9 Server/plugins" />
   </component>
 </project>

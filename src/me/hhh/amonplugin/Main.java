@@ -31,6 +31,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new ArmorBreak(this), this);
         pm.registerEvents(new BlockThrow(this), this);
         pm.registerEvents(new SwordSlash(this), this);
+        pm.registerEvents(new SwordierSlash(this), this);
         pm.registerEvents(new SpikeAttackMass(this), this);
         pm.registerEvents(new CatScratch(this), this);
         pm.registerEvents(new SpecialJumpAttack(this), this);

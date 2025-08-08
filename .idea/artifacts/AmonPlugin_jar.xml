@@ -1,23 +1,12 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="AmonPlugin:jar">
-    <output-path>$USER_HOME$/Server/plugins</output-path>
+    <output-path>$USER_HOME$/Spigot 1.8.9 Server/plugins</output-path>
     <root id="archive" name="AmonPlugin.jar">
       <element id="module-output" name="AmonPlugin" />
       <element id="extracted-dir" path="$USER_HOME$/Spigot 1.8.9 Server/spigot-1.16.5.jar" path-in-jar="/" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/Main.java" />
+      <element id="library" level="project" name="spigot-1.16.5" />
+      <element id="library" level="project" name="exp4j-0.4.8" />
       <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/plugin.yml" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/DrawCut.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/Telettack.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/commands/ToggleTP.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/commands/SetCustomModelData.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/BuryTheLight.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/commands/TPSelectedEntity.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/DayTicket.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/NightTicket.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/BuryTheTeleport.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/SecretBarrier.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/MagnetPunch.java" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/me/hhh/amonplugin/listeners/DeflectTest.java" />
     </root>
   </artifact>
 </component>
