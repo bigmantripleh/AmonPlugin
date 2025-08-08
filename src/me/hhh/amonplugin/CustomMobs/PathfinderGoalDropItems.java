@@ -86,18 +86,20 @@ public class PathfinderGoalDropItems extends PathfinderGoal {
     @Override
     public void d() {
         if (targetPlayer != null) {
-            EntityItem entityitem = new EntityItem(
-                    this.entity.getWorld(),
-                    this.entity.locX() + this.entity.getLookDirection().x,
-                    this.entity.locY() + 1.0,
-                    this.entity.locZ() + this.entity.getLookDirection().z,
-                    this.entity.getItemInMainHand());
-            entityitem.setPickupDelay(0);
-            entityitem.setThrower(this.entity.getUniqueID());
-            this.entity.playSound(SoundEffects.ENTITY_FOX_SPIT, 1.0F, 1.0F);
-            this.entity.getWorld().addEntity(entityitem);
+            if (!this.entity.getItemInMainHand().isEmpty()){
+                EntityItem entityitem = new EntityItem(
+                        this.entity.getWorld(),
+                        this.entity.locX() + this.entity.getLookDirection().x,
+                        this.entity.locY() + 1.0,
+                        this.entity.locZ() + this.entity.getLookDirection().z,
+                        this.entity.getItemInMainHand());
+                entityitem.setPickupDelay(0);
+                entityitem.setThrower(this.entity.getUniqueID());
+                this.entity.playSound(SoundEffects.ENTITY_FOX_SPIT, 1.0F, 1.0F);
+                this.entity.getWorld().addEntity(entityitem);
+                this.entity.setSlot(EnumItemSlot.MAINHAND, new ItemStack(Items.AIR));
+            }
 
-            this.entity.setSlot(EnumItemSlot.MAINHAND, new ItemStack(Items.AIR));
             this.entity.getDroppedPlayers().add(this.targetPlayer);
         }
 
